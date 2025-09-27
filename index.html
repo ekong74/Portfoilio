@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eric Kong – Portfolio</title>
+  <meta name="description" content="Personal portfolio of Your Name: projects, experience, and contact information." />
+  <meta name="author" content="Your Name" />
+  <meta property="og:title" content="Your Name – Portfolio" />
+  <meta property="og:description" content="Projects, experience, and contact information." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourusername.github.io/" />
+  <meta property="og:image" content="/assets/og-image.jpg" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🚀</text></svg>">
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #121318;
+      --text: #e8ecf1;
+      --muted: #a7b0bd;
+      --link: #8ec5ff;
+      --accent: #7ee787;
+      --border: #222632;
+      --shadow: 0 10px 25px rgba(0,0,0,.25);
+      --radius: 16px;
+      --maxw: 1000px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --ui: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f7fb;
+        --panel: #ffffff;
+        --text: #0d1321;
+        --muted: #3c4759;
+        --link: #1f6feb;
+        --accent: #1a7f37;
+        --border: #e6e8ef;
+        --shadow: 0 10px 25px rgba(0,0,0,.06);
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--ui);
+      background: radial-gradient(1200px 800px at 70% -10%, rgba(126,231,135,0.08), transparent),
+                  radial-gradient(900px 600px at -20% 10%, rgba(30,111,235,0.08), transparent),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+    .skip { position: absolute; left: -9999px; top: auto; }
+    .skip:focus { left: 16px; top: 16px; background: var(--panel); color: var(--text); padding: 8px 12px; border-radius: 8px; box-shadow: var(--shadow); }
+    header { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(180%) blur(10px); background: color-mix(in srgb, var(--bg) 85%, transparent); border-bottom: 1px solid var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: var(--maxw); margin: 0 auto; padding: 12px 24px; }
+    .brand { font-weight: 700; letter-spacing: .3px; }
+    .tag { color: var(--muted); font-size: .95rem; }
+    .nav a.btn { background: var(--panel); border: 1px solid var(--border); padding: 8px 12px; border-radius: 10px; box-shadow: var(--shadow); }
+    .nav a.btn:hover { text-decoration: none; border-color: color-mix(in srgb, var(--link) 30%, var(--border)); }
+    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: center; padding: 48px 24px 10px; max-width: var(--maxw); margin: 0 auto; }
+    .hero .panel { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    h1 { font-size: clamp(28px, 5vw, 48px); line-height: 1.1; margin: 0 0 8px 0; }
+    .subtitle { color: var(--muted); font-size: clamp(16px, 2.5vw, 20px); margin: 6px 0 16px; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); box-shadow: var(--shadow); }
+    .btn.primary { background: linear-gradient(135deg, color-mix(in srgb, var(--link) 22%, transparent), transparent); border-color: color-mix(in srgb, var(--link) 20%, var(--border)); }
+    .cover { aspect-ratio: 1 / 1; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); background: linear-gradient(135deg, rgba(143, 236, 169, .15), rgba(31, 111, 235, .15)); display: grid; place-items: center; font-size: 48px; }
+    .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    section { scroll-margin-top: 80px; }
+    .section { margin: 48px 0; }
+    .section h2 { font-size: 24px; margin: 0 0 12px; }
+    .section .lead { color: var(--muted); margin: 0 0 24px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; min-height: 100%; }
+    .thumb { aspect-ratio: 16 / 9; background: linear-gradient(135deg, rgba(31,111,235,.12), rgba(126,231,135,.12)); border-bottom: 1px solid var(--border); }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card .body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .card h3 { font-size: 18px; margin: 0; }
+    .meta { color: var(--muted); font-size: .95rem; }
+    .card .actions { margin-top: auto; display: flex; gap: 10px; }
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    ul.clean { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+    ul.clean li { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; box-shadow: var(--shadow); }
+    footer { border-top: 1px solid var(--border); margin-top: 48px; }
+    .foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: var(--maxw); margin: 0 auto; padding: 18px 24px; color: var(--muted); font-size: .95rem; }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .cols { grid-template-columns: 1fr; } .nav { padding: 10px 16px; } .hero { padding: 28px 16px 0; } .wrap { padding: 16px; } }
+    @media print {
+      * { box-shadow: none !important; }
+      body { background: #fff; color: #000; }
+      header, .cta, .thumb, .cover { display: none !important; }
+      .card, ul.clean li { border-color: #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header aria-label="Site header">
+    <nav class="nav" aria-label="Primary">
+      <div>
+        <div class="brand">Eric Kong</div>
+        <div class="tag">High School Student • Commuinity Volunteer / Event Organizer • Walnut, CA</div>
+      </div>
+      <div>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#intern">Interns</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="content" class="wrap" tabindex="-1">
+    <section class="hero" aria-label="Introduction">
+      <div class="panel">
+        <h1>Hi, I’m <span style="color:var(--accent)">Eric Fancheng Kong</span>.</h1>
+        <p class="subtitle">
+          I’m Eric, a motivated high school student passionate about giving back and learning through action. Over the years, I’ve devoted my time to volunteering both at my school and within my Chinese community. 
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#projects" aria-label="Skip to projects">Intellectural Games</a>
+          <a class="btn" href="#intern" aria-label="Open resume (PDF)">Intern Experiences</a>
+          <a class="btn" href="mailto:you@email.com" aria-label="Email me">Email Me</a>
+        </div>
+      </div>
+      <div class="cover" aria-label="Profile image placeholder">
+        <img src="Assets/profile.jpg" alt="Portrait of Your Name" />
+        <span aria-hidden="true">👋</span>
+      </div>
+    </section>
+
+    <section id="projects" class="section" aria-labelledby="projects-title">
+      <h2 id="projects-title">Intellectural Game Weekly Host </h2>
+      <a href="https://capa-walnut.org/free-learning-intellectual-games/">Ofiical Wbesite</a>
+      <p> Feb 2022 - Jul 2025 </p>
+    <ul class="lead">
+    <li>
+      Created and led weekly learning games — Developed a rotating curriculum of educational games (trivia, logic puzzles, vocabulary challenges, current events quizzes) for community participants, ensuring sessions remained fresh, stimulating, and pedagogically valuable.
+    </li>
+    <li>
+      Conducted in-event moderation and feedback — Introduced rules, kept sessions on schedule, judged responses when needed, and debriefed each game to explain correct answers and thinking processes, fostering critical thinking in participants.
+    </li>
+    <li>
+      Organized logistics, promotion & participant engagement — Managed scheduling, reserved venues or set up virtual meeting spaces, prepared materials (question banks, timers, score sheets), and advertised the events to community members to maximize attendance and sustained interest. 
+    </li>
+    </ul>
+
+      <div class="grid" role="list">
+        <article class="card" role="listitem" aria-labelledby="p1-title">
+          <div class="thumb">
+            <img src="Assets/gamehost-1.jpg" alt="Portrait of Your Name" />
+          </div>
+          <div class="body">
+            <h3 id="p1-title">Project One – App / Site</h3>
+            <p class="meta">HTML, CSS, JS • 2025</p>
+            <p>One‑sentence value: what it does and why it matters. Add measurable outcome if possible (e.g., “reduced load time 40%”).</p>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="p2-title">
+          <div class="thumb">
+            <img src="Assets/gamehost-2.jpg" alt="Portrait of Your Name" />
+          </div>
+          <div class="body">
+            <h3 id="p2-title">Project Two – Research / Visualization</h3>
+            <p class="meta">Python, D3 • 2024</p>
+            <p>Short description highlighting your specific contribution. Link to a write‑up or code if available.</p>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="p3-title">
+          <div class="thumb">
+            <img src="Assets/gamehost-3.jpg" alt="Portrait of Your Name" />
+          </div>
+          <div class="body">
+            <h3 id="p3-title">Project Three – Game / Interaction</h3>
+            <p class="meta">Unity, C# • 2023</p>
+            <p>What problem did it solve? What was your role? What did you learn?</p>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="p3-title">
+          <div class="thumb">
+            <img src="Assets/gamehost-4.jpg" alt="Portrait of Your Name" />
+          </div>
+          <div class="body">
+            <h3 id="p3-title">Project Three – Game / Interaction</h3>
+            <p class="meta">Unity, C# • 2023</p>
+            <p>What problem did it solve? What was your role? What did you learn?</p>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="p3-title">
+          <div class="thumb">
+            <img src="Assets/gamehost-5.jpg" alt="Portrait of Your Name" />
+          </div>
+          <div class="body">
+            <h3 id="p3-title">Project Three – Game / Interaction</h3>
+            <p class="meta">Unity, C# • 2023</p>
+            <p>What problem did it solve? What was your role? What did you learn?</p>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="p3-title">
+          <div class="thumb">
+            <img src="Assets/gamehost-6.jpg" alt="Portrait of Your Name" />
+          </div>
+          <div class="body">
+            <h3 id="p3-title">Project Three – Game / Interaction</h3>
+            <p class="meta">Unity, C# • 2023</p>
+            <p>What problem did it solve? What was your role? What did you learn?</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="intern" class="section" aria-labelledby="about-title">
+      <h2 id="about-title">Interns</h2>
+
+      <div class="cols" aria-label="Experience and Skills">
+        <div>
+          <h3>Assistant Intern at Accutax Service Inc. </h3>
+          <p> Feb 2025 - Jul 2025 </p>
+          <ul class="lead">
+            <li>
+              Assisted with Client Tax Documentation – Helped organize, review, and file financial records such as receipts, forms, and invoices to ensure accuracy and completeness before submission.
+            </li>
+              
+            <li>
+              Supported Data Entry and Record Management – Entered financial information into accounting software, maintained spreadsheets, and double-checked entries to reduce errors and improve efficiency in the tax preparation process.
+            </li>
+
+            <li>
+              Observed and Learned Tax Preparation Procedures – Shadowed accountants during client meetings and filing processes, gaining exposure to how tax returns are prepared, reviewed, and submitted under professional standards.
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Assistant Intern at YBCC Inc. </h3>
+          <p> Feb 2025 - Jul 2025 </p>
+          <ul class="lead">
+            <li>
+              Assisted with Product Data and Inventory Records – Helped update spreadsheets, track stock levels, and organize product information to support daily operations.
+            </li>
+              
+            <li>
+              Supported Marketing and Customer Outreach – Prepared basic promotional materials, reviewed social media posts, and assisted with packaging samples for potential clients.
+            </li>
+
+            <li>
+              Learned About Regulatory and Quality Standards – Observed how the company followed safety and labeling guidelines, gaining insight into compliance requirements for food and health products.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <p class="lead">Prefer email? I usually respond within a day.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:you@email.com">you@email.com</a>
+        <a class="btn" href="https://github.com/yourusername" target="_blank" rel="noreferrer noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="foot">
+      <span>© <span id="year"></span> Eric Kong</span>
+      <span>Built with plain HTML/CSS • Hosted on <a href="https://pages.github.com/" target="_blank" rel="noreferrer noopener">GitHub Pages</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
